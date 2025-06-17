@@ -1,13 +1,28 @@
 import type { Route } from "./+types/home";
 import { Welcome } from "../welcome/welcome";
+import { useEffect, useState } from "react";
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
-  ];
+  return [{ title: "App-1" }, { name: "description", content: "Welcome to App-1!" }];
 }
 
 export default function Home() {
-  return <Welcome />;
+  const [value, setValue] = useState("");
+
+  useEffect(() => {
+    async function getGreeting() {
+      const res = await fetch("http://localhost:8080", {
+        method: "GET",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.text();
+      setValue(data);
+    }
+
+    getGreeting();
+  }, []);
+  return <Welcome greeting={value} />;
 }
