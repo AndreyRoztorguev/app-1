@@ -85,3 +85,41 @@ This template comes with [Tailwind CSS](https://tailwindcss.com/) already config
 ---
 
 Built with ❤️ using React Router.
+
+# Docker
+
+# Server (app-1-api)
+
+```bash
+  cd app-1-api
+```
+
+```bash
+  docker build --progress=plain -t app-1-api .
+```
+
+# Client (app-1)
+
+```bash
+  cd app-1
+```
+
+```bash
+  docker build --progress=plain -t app-1 .
+```
+
+## You can run all of them separately using:
+
+```bash
+  docker run -p 8080:8000 --name app-1-api app-1-api
+```
+
+```bash
+  docker run -p 3000:5173 --name app-1 app-1
+```
+
+## Or via Docker Compose:
+
+```bash
+  docker compose up
+```
