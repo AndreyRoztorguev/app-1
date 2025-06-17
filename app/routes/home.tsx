@@ -11,7 +11,7 @@ export default function Home() {
 
   useEffect(() => {
     async function getGreeting() {
-      const res = await fetch("http://localhost:8080", {
+      const res = await fetch(import.meta.env.VITE_API, {
         method: "GET",
         mode: "cors",
         headers: {
